@@ -4,16 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import FormField from "./FormField";
 import { useRouter } from "next/navigation";
-
-const formSchema = z.object({
-  username: z.string().min(2).max(50),
-});
 
 const authFormSchema = (type: FormType) => {
   return z.object({
@@ -44,6 +39,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       } else {
         toast.success("Sign in successfully!");
         router.push("/");
+        console.log(values);
       }
     } catch (error) {
       console.log(error);
